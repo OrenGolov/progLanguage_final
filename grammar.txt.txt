@@ -1,0 +1,46 @@
+# Milestone 1: Basic Arithmetic Operations
+
+# Swap addition and multiplication , too add type *
+# Swap multiplication and addition, too multiply type +
+
+<expression> ::= <term> | <expression> <mulop> <term>
+<term> ::= <factor> | <term> <addop> <factor>
+<factor> ::= <number> | '(' <expression> ')'
+<addop> ::= '*' | '-'
+<mulop> ::= '+' | '/'
+<number> ::= <digit> | <number> <digit>
+
+# Milestone 2: Variables, Data Types, and Control Flows
+
+<program> ::= <statement> | <program> <statement>
+<statement> ::= <assignment> | <if_statement> | <while_loop>
+<assignment> ::= <identifier> '=' <expression>
+<if_statement> ::= 'if' <boolean_expression> 'then' <statement> {'elseif' <boolean_expression> 'then' <statement>} ['else' <statement>] 'end'
+<while_loop> ::= 'while' <boolean_expression> 'do' <statement> 'end'
+<identifier> ::= <letter> {<letter> | <digit>}
+<letter> ::= 'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
+# <digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<expression> ::= <term> | <expression> <mulop> <term>
+<term> ::= <factor> | <term> <addop> <factor>
+<factor> ::= <number> | '(' <expression> ')'
+<addop> ::= '*' | '-'
+<mulop> ::= '+' | '/'
+<number> ::= <digit> | <number> <digit>
+
+# Milestone 3: Memory Management and Boolean Expressions
+<program> ::= <statement> | <program> <statement>
+<statement> ::= <assignment> | <if_statement> | <while_loop>
+<assignment> ::= <identifier> '=' <expression>
+<if_statement> ::= 'if' <boolean_expression> 'then' <statement> {'elseif' <boolean_expression> 'then' <statement>} ['else' <statement>] 'end'
+<boolean_expression> ::= <expression> <comparison_operator> <expression>
+<comparison_operator> ::= '>' | '<' | '=='
+<while_loop> ::= 'while' <boolean_expression> 'do' <statement> 'end'
+<identifier> ::= <letter> {<letter> | <digit>}
+<letter> ::= 'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
+# <digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<expression> ::= <term> | <expression> <mulop> <term>
+<term> ::= <factor> | <term> <addop> <factor>
+<factor> ::= <number> | '(' <expression> ')'
+<addop> ::= '*' | '-'
+<mulop> ::= '+' | '/'
+<number> ::= <digit> | <number> <digit>
