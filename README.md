@@ -1,23 +1,7 @@
 # programmingLanguage_finalProject
-# programmingLanguage_finalProject
-# programmingLanguage_finalProject
-# programmingLanguage_finalProject
-# programmingLanguage_finalProject
-# programmingLanguage_finalProject
-# programmingLanguage_finalProject
-# ProgrammingLanguage_Project
-# ProgrammingLanguage_Project
-#ProgrammingLanguage_Project
-# ProgrammingLanguage_Project
-# ProgrammingLanguage
-# ProgrammingLanguage
-# Programming_languages
-# Programming_languages
-# ProgLanguages_finalProject
-# finalProject_ProgLanguage
-# -
-# -
-# FinalProject_ProgLanguage
-# FinalProject_ProgLanguage
-# progLanguage_final
-# progLanguage_final
+# Oren Golovchik - 316594829
+
+Check for files:
+main.py 
+FinalProject.docx
+grammar.txt
