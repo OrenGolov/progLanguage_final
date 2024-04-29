@@ -30,8 +30,8 @@ TOKEN_REGEX = re.compile('|'.join(f'(?P<{token_type}>{pattern})' for token_type,
 def lexer(program): 
 # Its purpose is to translate input in textual format into a list of tokens.
     tokens = []
-    for match in TOKEN_REGEX.finditer(program):
-        token_type = match.lastgroup
+    for match in TOKEN_REGEX.finditer(program): #finditer() = Provides the regular matches as objects.
+        token_type = match.lastgroup #last iteration of finditer()
         value = match.group(token_type)
         if token_type != 'SKIP':
             tokens.append((token_type, value))
