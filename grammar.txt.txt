@@ -15,7 +15,6 @@
 <program> ::= <statement> | <program> <statement>
 <statement> ::= <assignment> | <if_statement> | <while_loop>
 <assignment> ::= <identifier> '=' <expression>
-<if_statement> ::= 'if' <boolean_expression> 'then' <statement> {'elseif' <boolean_expression> 'then' <statement>} ['else' <statement>] 'end'
 <while_loop> ::= 'while' <boolean_expression> 'do' <statement> 'end'
 <identifier> ::= <letter> {<letter> | <digit>}
 <letter> ::= 'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
