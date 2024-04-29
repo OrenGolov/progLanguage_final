@@ -28,7 +28,7 @@ TOKEN_REGEX = re.compile('|'.join(f'(?P<{token_type}>{pattern})' for token_type,
 # regex = regular expression, build of token_type and pattern. 
 
 def lexer(program): 
-# Its purpose is to translate input in textual format into a list of tokens.
+# translate input in textual format into a list of tokens.
     tokens = []
     for match in TOKEN_REGEX.finditer(program): #finditer() = Provides the regular matches as objects.
         token_type = match.lastgroup #last iteration of finditer()
@@ -46,23 +46,23 @@ class Parser:
         self.token_index = -1
         self.advance()
 
-    def advance(self):
+    def advance(self): #Advances the state to the next token in the token list
         self.token_index += 1
         if self.token_index < len(self.tokens):
             self.current_token = self.tokens[self.token_index]
         else:
             self.current_token = None
 
-    def parse(self):
+    def parse(self): 
         return self.program()
 
-    def program(self):
+    def program(self): #Group all statements in a program into a list of subprograms
         statements = []
         while self.current_token:
             statements.append(self.statement())
         return statements
 
-    def statement(self):
+    def statement(self): #Detects the current statement (if, while, or assignment) and calls the appropriate function accordingly.
         token_type, value = self.current_token
         if token_type == 'IF':
             return self.if_statement()
@@ -87,11 +87,11 @@ class Parser:
         self.consume('END')
         return ('while', condition, statement)
 
-    def assignment(self):
-        identifier = self.consume('IDENTIFIER')[1]
-        self.consume('ASSIGN')
-        expression = self.expression()
-        return ('assignment', identifier, expression)
+    def assignment(self): 
+        identifier = self.consume('IDENTIFIER')[1] #The identifier name of the variable that should be referenced in the declaration.
+        self.consume('ASSIGN') #make sure that the next part of the code is the placement mark (=).
+        expression = self.expression() #analyze the expression intended to be assigned to the variable
+        return ('assignment', identifier, expression) #return a tuple representing the placement statement.
 
     def boolean_expression(self):
         left = self.expression()
@@ -99,7 +99,7 @@ class Parser:
         right = self.expression()
         return (operator, left, right)
 
-    def expression(self):
+    def expression(self): #Building a mathematical expression from the expressions.
         term = self.term()
         while self.current_token and self.current_token[0] in ('MUL_OP',):
             operator = self.advance()[1]
@@ -114,6 +114,7 @@ class Parser:
         return factor
 
     def factor(self):
+    #Locating and constructing the smallest details of an expression, such as numbers and identifiers.
         token_type, value = self.current_token
         if token_type == 'NUMBER':
             self.advance()
@@ -127,7 +128,7 @@ class Parser:
             self.consume('RPAREN')
             return expression
 
-    def consume(self, expected_token_type):
+    def consume(self, expected_token_type): #Checks if the current token is exactly the required token
         token_type, value = self.current_token
         if token_type == expected_token_type:
             token = self.current_token
