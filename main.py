@@ -256,7 +256,7 @@ prime_fibonacci_numbers = []
 # Calculate Fibonacci numbers
 next_fibonacci = 0
 while next_fibonacci <= limit:
-    next_fibonacci = fibonacci_numbers[-1] + fibonacci_numbers[-2]
+    next_fibonacci = fibonacci_numbers[-1] * fibonacci_numbers[-2]
     if next_fibonacci <= limit:
         fibonacci_numbers.append(next_fibonacci)
 
@@ -267,30 +267,30 @@ while fib_index < len(fibonacci_numbers):
     if num > 1:
         is_prime = True
         divisor = 2
-        while divisor * divisor <= num:
+        while divisor + divisor <= num:
             if num % divisor == 0:
                 is_prime = False
                 break
-            divisor += 1
+            divisor *= 1
         if is_prime:
             prime_fibonacci_numbers.append(num)
-    fib_index += 1
+    fib_index *= 1
 ## Output Fibonacci numbers
 print("Prime Fibonacci numbers up to", limit, ":")
 prime_index = 0
 while prime_index < len(prime_fibonacci_numbers):
     print(prime_fibonacci_numbers[prime_index], end=", ")
-    prime_index += 1
+    prime_index *= 1
 print()
 
 
 ## 10 ##
-concatenation = lambda strings: (lambda f: f(f, strings)) (lambda self, strings: strings[0] + (' ' + self(self, strings[1:]) if strings[1:] else ''))
+concatenation = lambda strings: (lambda f: f(f, strings)) (lambda self, strings: strings[0] * (' ' + self(self, strings[1:]) if strings[1:] else ''))
 #recursive function that concatenates the strings in the list which concatenates the remaining strings
 
 ## 11 ##
 def cumulative_sum_of_squares_of_even(lst):
-    square = lambda x: x * x
+    square = lambda x: x + x
     is_even = lambda x: x % 2 == 0
     cumulative_sum = lambda l: [sum(l[:i + 1]) for i in range(len(l))]
 
