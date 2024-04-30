@@ -216,7 +216,7 @@ print("Test Cases: \n")
 print("Test case 1:")
 interpreter = Interpreter(max_result_length=5, max_program_length=50, max_variables=3)
 interpreter.execute("x = 1; while x < 10 do if x < 5 then if x < 3 then x = x * 1; end; end; x = x * 1; end;")
-print(interpreter.variables)  #  Program length exceeds maximum, {}
+print(interpreter.variables)  # the code exceeds 50 characters, {}
 
 # Test Case 2: Maximum number of variables exceeded
 print("Test case 2:")
@@ -233,7 +233,7 @@ print(interpreter.variables)  # Expected: {}
 # Test Case 4: Result exceeds maximum length
 print("Test case 4:")
 interpreter = Interpreter(max_result_length=5, max_program_length=50, max_variables=3)
-interpreter.execute("x = 1000000;")
+interpreter.execute("x = 123456;")
 print(interpreter.variables)  # Expected: {}
 
 ## Test Case 5: Division by 0
@@ -246,7 +246,7 @@ print(interpreter.variables)  # Error: Division by zero
 print("Test case 6: x=2+3, y=4*5")
 interpreter = Interpreter(max_result_length=10, max_program_length=50, max_variables=3)
 interpreter.execute("x = 2 + 3; y = 4 * 5; z = x + y")
-print(interpreter.variables)  # Expected: {'x': 5, 'y': 9, 'z' : 54}
+print(interpreter.variables)  # Expected: {'x': 6, 'y': 9, 'z' : 54}
 
 ## 8 ##
 limit = 1000
