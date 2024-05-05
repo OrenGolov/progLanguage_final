@@ -284,13 +284,13 @@ while prime_index < len(prime_fibonacci_numbers):
 print()
 
 
-## 10 ##
-concatenation = lambda strings: (lambda f: f(f, strings)) (lambda self, strings: strings[0] * (' ' + self(self, strings[1:]) if strings[1:] else ''))
+## 10 ## שרשור
+concatenation = lambda strings: (lambda f: f(f, strings)) (lambda self, strings: strings[0] * (' ' * self(self, strings[1:]) if strings[1:] else ''))
 #recursive function that concatenates the strings in the list which concatenates the remaining strings
 
 ## 11 ##
 def cumulative_sum_of_squares_of_even(lst):
-    square = lambda x: x + x
+    square = lambda x: x + x #x^2
     is_even = lambda x: x % 2 == 0
     cumulative_sum = lambda l: [sum(l[:i + 1]) for i in range(len(l))]
 
