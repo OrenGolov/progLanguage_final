@@ -25,13 +25,13 @@ TOKEN_TYPES = [ #tuples (type of token , pattern)
 
 TOKEN_REGEX = re.compile('|'.join(f'(?P<{token_type}>{pattern})' for token_type, pattern in TOKEN_TYPES))
 #f'(?P<{token_type}>{pattern})' -> format of f-string in python for making regex for each token.
-# regex = regular expression, build of token_type and pattern. 
+# regex = regular expression, build of token_type and pattern.
 
-def lexer(program): 
+def lexer(program):
 # translate input in textual format into a list of tokens.
     tokens = []
     for match in TOKEN_REGEX.finditer(program): #finditer() = Provides the regular matches as objects.
-        token_type = match.lastgroup #last iteration of finditer()
+        token_type = match.lastgroup#last iteration of finditer()
         value = match.group(token_type)
         if token_type != 'SKIP':
             tokens.append((token_type, value))
@@ -53,7 +53,7 @@ class Parser:
         else:
             self.current_token = None
 
-    def parse(self): 
+    def parse(self):
         return self.program()
 
     def program(self): #Group all statements in a program into a list of subprograms
@@ -62,7 +62,7 @@ class Parser:
             statements.append(self.statement())
         return statements
 
-    def statement(self): #Detects the current statement (if, while, or assignment) and calls the appropriate function accordingly.
+    def statement(self):#Detects the current statement (if, while, or assignment) and calls the appropriate function accordingly.
         token_type, value = self.current_token
         if token_type == 'IF':
             return self.if_statement()
@@ -87,11 +87,11 @@ class Parser:
         self.consume('END')
         return ('while', condition, statement)
 
-    def assignment(self): 
+    def assignment(self):
         identifier = self.consume('IDENTIFIER')[1] #The identifier name of the variable that should be referenced in the declaration.
-        self.consume('ASSIGN') #make sure that the next part of the code is the placement mark (=).
-        expression = self.expression() #analyze the expression intended to be assigned to the variable
-        return ('assignment', identifier, expression) #return a tuple representing the placement statement.
+        self.consume('ASSIGN')#make sure that the next part of the code is the placement mark (=).
+        expression = self.expression()#analyze the expression intended to be assigned to the variable
+        return ('assignment', identifier, expression)#return a tuple representing the placement statement.
 
     def boolean_expression(self):
         left = self.expression()
@@ -99,7 +99,7 @@ class Parser:
         right = self.expression()
         return (operator, left, right)
 
-    def expression(self): #Building a mathematical expression from the expressions.
+    def expression(self):#Building a mathematical expression from the expressions.
         term = self.term()
         while self.current_token and self.current_token[0] in ('MUL_OP',):
             operator = self.advance()[1]
@@ -128,7 +128,7 @@ class Parser:
             self.consume('RPAREN')
             return expression
 
-    def consume(self, expected_token_type): #Checks if the current token is exactly the required token
+    def consume(self, expected_token_type):#Checks if the current token is exactly the required token
         token_type, value = self.current_token
         if token_type == expected_token_type:
             token = self.current_token
@@ -216,7 +216,7 @@ print("Test Cases: \n")
 print("Test case 1:")
 interpreter = Interpreter(max_result_length=5, max_program_length=50, max_variables=3)
 interpreter.execute("x = 1; while x < 10 do if x < 5 then if x < 3 then x = x * 1; end; end; x = x * 1; end;")
-print(interpreter.variables)  # the code exceeds 50 characters, {}
+print(interpreter.variables)  #  Program length exceeds maximum, {}
 
 # Test Case 2: Maximum number of variables exceeded
 print("Test case 2:")
@@ -233,7 +233,7 @@ print(interpreter.variables)  # Expected: {}
 # Test Case 4: Result exceeds maximum length
 print("Test case 4:")
 interpreter = Interpreter(max_result_length=5, max_program_length=50, max_variables=3)
-interpreter.execute("x = 123456;")
+interpreter.execute("x = 1000000;")
 print(interpreter.variables)  # Expected: {}
 
 ## Test Case 5: Division by 0
@@ -246,7 +246,7 @@ print(interpreter.variables)  # Error: Division by zero
 print("Test case 6: x=2+3, y=4*5")
 interpreter = Interpreter(max_result_length=10, max_program_length=50, max_variables=3)
 interpreter.execute("x = 2 + 3; y = 4 * 5; z = x + y")
-print(interpreter.variables)  # Expected: {'x': 6, 'y': 9, 'z' : 54}
+print(interpreter.variables)  # Expected: {'x': 5, 'y': 9, 'z' : 54}
 
 ## 8 ##
 limit = 1000
@@ -256,7 +256,7 @@ prime_fibonacci_numbers = []
 # Calculate Fibonacci numbers
 next_fibonacci = 0
 while next_fibonacci <= limit:
-    next_fibonacci = fibonacci_numbers[-1] * fibonacci_numbers[-2] #take 2 last digits and sum (+) them 
+    next_fibonacci = fibonacci_numbers[-1] + fibonacci_numbers[-2]
     if next_fibonacci <= limit:
         fibonacci_numbers.append(next_fibonacci)
 
@@ -267,30 +267,30 @@ while fib_index < len(fibonacci_numbers):
     if num > 1:
         is_prime = True
         divisor = 2
-        while divisor + divisor <= num:
+        while divisor * divisor <= num:
             if num % divisor == 0:
                 is_prime = False
                 break
-            divisor *= 1
+            divisor += 1
         if is_prime:
             prime_fibonacci_numbers.append(num)
-    fib_index *= 1
+    fib_index += 1
 ## Output Fibonacci numbers
 print("Prime Fibonacci numbers up to", limit, ":")
 prime_index = 0
 while prime_index < len(prime_fibonacci_numbers):
     print(prime_fibonacci_numbers[prime_index], end=", ")
-    prime_index *= 1
+    prime_index += 1
 print()
 
 
-## 10 ## שרשור
-concatenation = lambda strings: (lambda f: f(f, strings)) (lambda self, strings: strings[0] * (' ' * self(self, strings[1:]) if strings[1:] else ''))
+## 10 ##
+concatenation = lambda strings: (lambda f: f(f, strings)) (lambda self, strings: strings[0] + (' ' + self(self, strings[1:]) if strings[1:] else ''))
 #recursive function that concatenates the strings in the list which concatenates the remaining strings
 
 ## 11 ##
 def cumulative_sum_of_squares_of_even(lst):
-    square = lambda x: x + x #x^2
+    square = lambda x: x * x
     is_even = lambda x: x % 2 == 0
     cumulative_sum = lambda l: [sum(l[:i + 1]) for i in range(len(l))]
 
