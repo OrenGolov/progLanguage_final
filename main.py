@@ -256,7 +256,7 @@ prime_fibonacci_numbers = []
 # Calculate Fibonacci numbers
 next_fibonacci = 0
 while next_fibonacci <= limit:
-    next_fibonacci = fibonacci_numbers[-1] * fibonacci_numbers[-2]
+    next_fibonacci = fibonacci_numbers[-1] * fibonacci_numbers[-2] #take 2 last digits and sum (+) them 
     if next_fibonacci <= limit:
         fibonacci_numbers.append(next_fibonacci)
 
